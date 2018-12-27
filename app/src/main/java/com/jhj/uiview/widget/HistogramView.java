@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -67,18 +68,42 @@ public class HistogramView extends View {
         canvas.drawPath(mPath, mPaint);
 
         //矩形
-        mPaint.setColor(rectColor);
-        mPaint.setStyle(Paint.Style.FILL);
+
 
         for (int i = 0; i < dataList.size(); i++) {
             HistogramBean bean = dataList.get(i);
+
+            //画柱状图
             int height = getHeight() - (getPaddingBottom() + getPaddingTop());
             int left = (int) (rectInterval * (1 + i) + rectWidth * i + getPaddingLeft());
-            int top = (int) (height * bean.getPercent());
+            int top = (int) (height * (1 - bean.getPercent()));
             int right = (int) ((rectInterval + rectWidth) * (1 + i) + getPaddingLeft());
             int bottom = getHeight() - getPaddingBottom();
 
+            mPaint.reset();
+            mPaint.setColor(rectColor);
+            mPaint.setStyle(Paint.Style.FILL);
             canvas.drawRect(left, top, right, bottom, mPaint);
+
+            //写比例
+            Rect rect = new Rect();
+            String text = String.valueOf(bean.getPercent());
+            mPaint.reset();
+            mPaint.setColor(rectColor);
+            mPaint.setAntiAlias(true);
+            mPaint.setTextSize(getResources().getDisplayMetrics().scaledDensity * 15);
+            mPaint.setStrokeWidth(4);
+            mPaint.getTextBounds(text, 0, text.length(), rect);
+
+            int offset = 0;
+            if (rectWidth > (rect.right - rect.left)) {
+                offset = (int) ((rectWidth - (rect.right + rect.left)) / 2);
+            }
+            int x = left + offset;
+            int y = top - 10;
+            canvas.drawText(text, x, y, mPaint);
+
+            //写描述
         }
 
 
