@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HistogramView">
+        <attr name="rectWidth" format="dimension" />
+        <attr name="rectInterval" format="dimension" />
+        <attr name="rectColor" format="color" />
+    </declare-styleable>
+</resources>
