@@ -1,8 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--频数-->
+    <attr name="frequencyColor" format="color" />
+    <attr name="frequencyMarginBottom" format="dimension" />
+    <attr name="frequencySize" format="dimension" />
+    <!--变量分组-->
+    <attr name="variableGroupColor" format="color" />
+    <attr name="variableGroupSize" format="dimension" />
+    <attr name="variableGroupMarginTop" format="dimension" />
+    <!--坐标轴-->
+    <attr name="axisLineColor" format="color" />
+    <attr name="axisLineWidth" format="integer" />
+
+
     <declare-styleable name="HistogramView">
-        <attr name="rectWidth" format="dimension" />
-        <attr name="rectInterval" format="dimension" />
-        <attr name="rectColor" format="color" />
+        <!--直方图-->
+        <attr name="histogramColor" format="color" />
+        <attr name="histogramWidth" format="dimension" />
+        <attr name="histogramDistance" format="dimension" />
+        <!--频数-->
+        <attr name="frequencyColor" />
+        <attr name="frequencyMarginBottom" />
+        <attr name="frequencySize" />
+        <!--变量分组-->
+        <attr name="variableGroupColor" />
+        <attr name="variableGroupSize" />
+        <attr name="variableGroupMarginTop" />
+        <!--坐标轴-->
+        <attr name="axisLineColor" />
+        <attr name="axisLineWidth" />
+
+    </declare-styleable>
+
+
+    <declare-styleable name="LineChartView">
+        <!--折线图-->
+        <attr name="lineChartColor" format="color" />
+        <attr name="lineChartWidth" format="dimension" />
+        <attr name="lineChartDistance" format="dimension" />
+        <!--频数-->
+        <attr name="frequencyColor" />
+        <attr name="frequencyMarginBottom" />
+        <attr name="frequencySize" />
+        <!--变量分组-->
+        <attr name="variableGroupColor" />
+        <attr name="variableGroupSize" />
+        <attr name="variableGroupMarginTop" />
+        <!--坐标轴-->
+        <attr name="axisLineColor" />
+        <attr name="axisLineWidth" />
     </declare-styleable>
 </resources>

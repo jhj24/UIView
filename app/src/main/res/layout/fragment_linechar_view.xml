@@ -5,15 +5,13 @@
     android:layout_height="match_parent">
 
 
-    <com.jhj.uiview.widget.HistogramView
-        android:id="@+id/histogramView"
+    <com.jhj.uiview.widget.LineChartView
+        android:id="@+id/lineChartView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#506e79"
         android:padding="10dp"
-        app:axisLineWidth="30"
-        app:layout_constraintHeight_percent="0.6"
-        />
+        app:layout_constraintHeight_percent="0.6" />
 
 
 </android.support.constraint.ConstraintLayout>

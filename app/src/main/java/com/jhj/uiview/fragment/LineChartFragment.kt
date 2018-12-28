@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.jhj.uiview.R
 import com.jhj.uiview.bean.HistogramBean
-import kotlinx.android.synthetic.main.fragment_histogram_view.view.*
+import kotlinx.android.synthetic.main.fragment_linechar_view.view.*
 
-class HistogramFragment : Fragment() {
+class LineChartFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_histogram_view, container, false)
+        return inflater.inflate(R.layout.fragment_linechar_view, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class HistogramFragment : Fragment() {
                 HistogramBean("5", 0.25f)
         )
 
-        view.histogramView.setData(list)
+        view.lineChartView.setDataList(list)
 
     }
 
