@@ -11,6 +11,7 @@
         android:layout_height="0dp"
         android:background="#506e79"
         android:padding="10dp"
+        app:axisLineWidth="3"
         app:layout_constraintHeight_percent="0.6" />
 
 
