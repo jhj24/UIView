@@ -38,6 +38,10 @@
         <attr name="lineChartColor" format="color" />
         <attr name="lineChartWidth" format="dimension" />
         <attr name="lineChartDistance" format="dimension" />
+        <!--点-->
+        <attr name="isPointRound" format="boolean" />
+        <attr name="pointColor" format="color" />
+        <attr name="pointSize" format="float" />
         <!--频数-->
         <attr name="frequencyColor" />
         <attr name="frequencyMarginBottom" />

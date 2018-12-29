@@ -3,7 +3,6 @@ package com.jhj.uiview.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
@@ -21,7 +20,6 @@ public class LineChartView extends View {
     private List<HistogramBean> mDataList;
     private float num;
     private int mMaxTextHeight;
-    private Paint mTextPaint;
     private Paint mPaint;
     private Path mPath;
 
@@ -29,6 +27,10 @@ public class LineChartView extends View {
     private int mLineChartColor;
     private float mLineChartWidth;
     private float mLineChartDistance;
+    //点
+    private boolean isPointRound;
+    private float mPointSize;
+    private int mPointColor;
     //坐标轴
     private int mAxisLineColor;
     private float mAxisLineWidth;
@@ -57,6 +59,9 @@ public class LineChartView extends View {
         mLineChartColor = typedArray.getColor(R.styleable.LineChartView_lineChartColor, 0xff68b831);
         mLineChartDistance = typedArray.getDimension(R.styleable.LineChartView_lineChartDistance, 50 * density);
         mLineChartWidth = typedArray.getInt(R.styleable.LineChartView_lineChartWidth, 3);
+        isPointRound = typedArray.getBoolean(R.styleable.LineChartView_isPointRound, true);
+        mPointColor = typedArray.getColor(R.styleable.LineChartView_pointColor, 0xff68b831);
+        mPointSize = typedArray.getDimension(R.styleable.LineChartView_pointSize, 3 * density);
         mAxisLineColor = typedArray.getColor(R.styleable.LineChartView_axisLineColor, 0xFF68b831);
         mAxisLineWidth = typedArray.getInt(R.styleable.LineChartView_axisLineWidth, 3);
         mFrequencyColor = typedArray.getColor(R.styleable.LineChartView_frequencyColor, 0xff68b831);
@@ -68,9 +73,8 @@ public class LineChartView extends View {
 
         mPath = new Path();
         mPaint = new Paint();
-        mTextPaint = new Paint();
-        mTextPaint.setTextSize(mVariableGroupSize);
-        mTextPaint.setColor(mVariableGroupColor);
+        mPaint.setTextSize(mVariableGroupSize);
+        mPaint.setColor(mVariableGroupColor);
 
         typedArray.recycle();
     }
@@ -86,29 +90,27 @@ public class LineChartView extends View {
             float x = getLeft() + mAxisLineWidth + mLineChartDistance * (1 + i);
 
             //变量分组
-            Rect bound = new Rect();
-            mTextPaint.getTextBounds(text, 0, text.length(), bound);
-            float startX = x - bound.width() / 2;
-            canvas.drawText(text, startX, getHeight() - getPaddingBottom(), mTextPaint);
+            mPaint.reset();
+            mPaint.setTextSize(mVariableGroupSize);
+            mPaint.setColor(mVariableGroupColor);
+            float startX = x - mPaint.measureText(text) / 2;
+            canvas.drawText(text, startX, getHeight() - getPaddingBottom(), mPaint);
 
             //画点
             mPaint.reset();
-            mPaint.setColor(Color.RED);
-            mPaint.setStrokeWidth(10);
+            mPaint.setColor(mPointColor);
+            mPaint.setStrokeWidth(mPointSize);
+            mPaint.setStrokeCap(isPointRound ? Paint.Cap.ROUND : Paint.Cap.BUTT);
             float axisHeight = getHeight() - (getPaddingBottom() + getPaddingTop() + mMaxTextHeight + mVariableGroupMarginTop + mAxisLineWidth);
             float y = axisHeight * (1 - (mDataList.get(i).getPercent() / num));
             canvas.drawPoint(x, y, mPaint);
 
             //比例
             String percent = String.valueOf(mDataList.get(i).getPercent());
-            Rect rect = new Rect();
             mPaint.reset();
             mPaint.setColor(mFrequencyColor);
             mPaint.setTextSize(mFrequencySize);
-            mPaint.setStrokeWidth(4);
-            mPaint.getTextBounds(percent, 0, percent.length(), rect);
-            float offset = x - rect.width() / 2;
-            canvas.drawText(percent, offset, y - mFrequencyMarginBottom, mPaint);
+            canvas.drawText(percent, x - mPaint.measureText(percent) / 2, y - mFrequencyMarginBottom, mPaint);
 
             //折线图
             if (i == 0) {
@@ -141,7 +143,8 @@ public class LineChartView extends View {
         this.mDataList = dataList;
         for (int i = 0; i < dataList.size(); i++) {
             Rect rect = new Rect();
-            mTextPaint.getTextBounds(mDataList.get(i).getName(), 0, mDataList.get(i).getName().length(), rect);
+            String string = dataList.get(i).getName();
+            mPaint.getTextBounds(string, 0, string.length(), rect);
             if (mMaxTextHeight < rect.height()) {
                 mMaxTextHeight = rect.height();
             }

@@ -59,14 +59,6 @@ public class HistogramView extends View {
 
     public HistogramView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-        mPaint = new Paint();
-        mPaint.setColor(mVariableGroupColor);
-        mPaint.setTextSize(mVariableGroupSize);
-        mPaint.setStrokeWidth(4);
-
-
-        mPath = new Path();
         float scaleDensity = context.getResources().getDisplayMetrics().scaledDensity;
         float density = context.getResources().getDisplayMetrics().density;
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.HistogramView);
@@ -81,6 +73,12 @@ public class HistogramView extends View {
         mVariableGroupColor = typedArray.getColor(R.styleable.HistogramView_variableGroupColor, 0xff68b831);
         mVariableGroupSize = typedArray.getDimension(R.styleable.HistogramView_variableGroupSize, 12 * scaleDensity);
         mVariableGroupMarginTop = typedArray.getDimension(R.styleable.HistogramView_variableGroupMarginTop, 3 * density);
+
+        mPath = new Path();
+        mPaint = new Paint();
+        mPaint.setColor(mVariableGroupColor);
+        mPaint.setTextSize(mVariableGroupSize);
+
         typedArray.recycle();
     }
 
@@ -100,13 +98,10 @@ public class HistogramView extends View {
 
 
             //写描述
-            Rect bound = new Rect();
             mPaint.reset();
             mPaint.setColor(mVariableGroupColor);
             mPaint.setTextSize(mVariableGroupSize);
-            mPaint.setStrokeWidth(4);
-            mPaint.getTextBounds(bean.getName(), 0, bean.getName().length(), bound);
-            float offset1 = (mHistogramWidth - bound.width()) / 2;
+            float offset1 = (mHistogramWidth - mPaint.measureText(bean.getName())) / 2;
             canvas.drawText(bean.getName(), left + offset1, getHeight() - getPaddingBottom(), mPaint);
 
             //画柱状图
@@ -116,18 +111,13 @@ public class HistogramView extends View {
             canvas.drawRect(left, top, right, bottom, mPaint);
 
             //写比例
-            Rect rect = new Rect();
             String percent = String.valueOf(bean.getPercent());
             mPaint.reset();
             mPaint.setColor(mFrequencyColor);
             mPaint.setTextSize(mFrequencySize);
-            mPaint.setStrokeWidth(4);
-            mPaint.getTextBounds(percent, 0, percent.length(), rect);
 
-            float offset = (mHistogramWidth - rect.width()) / 2;
-            float x = left + offset;
-            float y = (int) (top - mFrequencyMarginBottom);
-            canvas.drawText(percent, x, y, mPaint);
+            float offset = (mHistogramWidth - mPaint.measureText(percent)) / 2;
+            canvas.drawText(percent, left + offset, top - mFrequencyMarginBottom, mPaint);
 
         }
 
@@ -146,9 +136,10 @@ public class HistogramView extends View {
 
     public void setData(List<HistogramBean> list) {
         this.mDataList = list;
-        for (int i = 0; i < mDataList.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             Rect rect = new Rect();
-            mPaint.getTextBounds(mDataList.get(i).getName(), 0, mDataList.get(i).getName().length(), rect);
+            String string = list.get(i).getName();
+            mPaint.getTextBounds(string, 0, string.length(), rect);
             if (mMaxTextHeight < rect.height()) {
                 mMaxTextHeight = rect.height();
             }
