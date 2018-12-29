@@ -15,13 +15,11 @@ import com.jhj.uiview.bean.HistogramBean;
 
 import java.util.List;
 
+/**
+ * 折线图
+ */
 public class LineChartView extends View {
 
-    private List<HistogramBean> mDataList;
-    private float num;
-    private int mMaxTextHeight;
-    private Paint mPaint;
-    private Path mPath;
 
     //直方图
     private int mLineChartColor;
@@ -42,6 +40,13 @@ public class LineChartView extends View {
     private int mVariableGroupColor;
     private float mVariableGroupSize;
     private float mVariableGroupMarginTop;
+
+    private List<HistogramBean> mDataList;
+    private double mTotalNum;
+    private int mMaxTextHeight;
+    private Paint mPaint;
+    private Path mPath;
+
 
     public LineChartView(Context context) {
         this(context, null);
@@ -85,7 +90,7 @@ public class LineChartView extends View {
         super.onDraw(canvas);
 
         for (int i = 0; i < mDataList.size(); i++) {
-            String text = mDataList.get(i).getName();
+            String text = mDataList.get(i).getContent();
 
             float x = getLeft() + mAxisLineWidth + mLineChartDistance * (1 + i);
 
@@ -102,11 +107,11 @@ public class LineChartView extends View {
             mPaint.setStrokeWidth(mPointSize);
             mPaint.setStrokeCap(isPointRound ? Paint.Cap.ROUND : Paint.Cap.BUTT);
             float axisHeight = getHeight() - (getPaddingBottom() + getPaddingTop() + mMaxTextHeight + mVariableGroupMarginTop + mAxisLineWidth);
-            float y = axisHeight * (1 - (mDataList.get(i).getPercent() / num));
+            float y = (float) (axisHeight * (1 - (mDataList.get(i).getFrequency() / mTotalNum)));
             canvas.drawPoint(x, y, mPaint);
 
             //比例
-            String percent = String.valueOf(mDataList.get(i).getPercent());
+            String percent = String.valueOf(mDataList.get(i).getFrequency());
             mPaint.reset();
             mPaint.setColor(mFrequencyColor);
             mPaint.setTextSize(mFrequencySize);
@@ -143,12 +148,12 @@ public class LineChartView extends View {
         this.mDataList = dataList;
         for (int i = 0; i < dataList.size(); i++) {
             Rect rect = new Rect();
-            String string = dataList.get(i).getName();
+            String string = dataList.get(i).getContent();
             mPaint.getTextBounds(string, 0, string.length(), rect);
             if (mMaxTextHeight < rect.height()) {
                 mMaxTextHeight = rect.height();
             }
-            num += mDataList.get(i).getPercent();
+            mTotalNum += mDataList.get(i).getFrequency();
         }
     }
 }

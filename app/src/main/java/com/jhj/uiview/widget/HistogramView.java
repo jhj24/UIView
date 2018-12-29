@@ -46,7 +46,7 @@ public class HistogramView extends View {
     private Path mPath;
     private List<HistogramBean> mDataList;
     private int mMaxTextHeight;
-    private float num;
+    private double mTotalNum;
 
 
     public HistogramView(Context context) {
@@ -92,7 +92,7 @@ public class HistogramView extends View {
             HistogramBean bean = mDataList.get(i);
             float height = getHeight() - (getPaddingBottom() + getPaddingTop() + mMaxTextHeight + mVariableGroupMarginTop + mAxisLineWidth);
             float left = getPaddingLeft() + mAxisLineWidth + mHistogramDistance * (i + 1) + mHistogramWidth * i;
-            float top = height * (1 - bean.getPercent() / num);
+            float top = (float) (height * (1 - bean.getFrequency() / mTotalNum));
             float right = getPaddingLeft() + mAxisLineWidth + (mHistogramDistance + mHistogramWidth) * (i + 1);
             float bottom = getHeight() - (getPaddingBottom() + mMaxTextHeight + mVariableGroupMarginTop + mAxisLineWidth);
 
@@ -101,8 +101,8 @@ public class HistogramView extends View {
             mPaint.reset();
             mPaint.setColor(mVariableGroupColor);
             mPaint.setTextSize(mVariableGroupSize);
-            float offset1 = (mHistogramWidth - mPaint.measureText(bean.getName())) / 2;
-            canvas.drawText(bean.getName(), left + offset1, getHeight() - getPaddingBottom(), mPaint);
+            float offset1 = (mHistogramWidth - mPaint.measureText(bean.getContent())) / 2;
+            canvas.drawText(bean.getContent(), left + offset1, getHeight() - getPaddingBottom(), mPaint);
 
             //画柱状图
             mPaint.reset();
@@ -111,7 +111,7 @@ public class HistogramView extends View {
             canvas.drawRect(left, top, right, bottom, mPaint);
 
             //写比例
-            String percent = String.valueOf(bean.getPercent());
+            String percent = String.valueOf(bean.getFrequency());
             mPaint.reset();
             mPaint.setColor(mFrequencyColor);
             mPaint.setTextSize(mFrequencySize);
@@ -138,12 +138,12 @@ public class HistogramView extends View {
         this.mDataList = list;
         for (int i = 0; i < list.size(); i++) {
             Rect rect = new Rect();
-            String string = list.get(i).getName();
+            String string = list.get(i).getContent();
             mPaint.getTextBounds(string, 0, string.length(), rect);
             if (mMaxTextHeight < rect.height()) {
                 mMaxTextHeight = rect.height();
             }
-            num += mDataList.get(i).getPercent();
+            mTotalNum += mDataList.get(i).getFrequency();
         }
     }
 

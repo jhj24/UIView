@@ -54,4 +54,16 @@
         <attr name="axisLineColor" />
         <attr name="axisLineWidth" />
     </declare-styleable>
+
+
+    <declare-styleable name="PieChartView">
+        <!--指示线-->
+        <attr name="indicatorLineColor" format="integer" />
+        <attr name="indicatorLineLength" format="integer" />
+        <attr name="indicatorLineWidth" format="integer" />
+        <!--说明-->
+        <attr name="indicatorInfoColor" format="integer" />
+        <attr name="indicatorInfoSize" format="float" />
+
+    </declare-styleable>
 </resources>

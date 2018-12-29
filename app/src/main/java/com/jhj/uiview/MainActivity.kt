@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import com.jhj.uiview.fragment.HistogramFragment
 import com.jhj.uiview.fragment.LineChartFragment
+import com.jhj.uiview.fragment.PieChartFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val fragmentList = arrayListOf<Fragment>()
         fragmentList.add(LineChartFragment())
         fragmentList.add(HistogramFragment())
-        fragmentList.add(HistogramFragment())
+        fragmentList.add(PieChartFragment())
 
         viewPager.adapter = PageAdapter(fragmentList, list, supportFragmentManager)
 

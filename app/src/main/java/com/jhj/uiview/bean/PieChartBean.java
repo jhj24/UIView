@@ -2,15 +2,18 @@ package com.jhj.uiview.bean;
 
 import java.math.BigDecimal;
 
-public class HistogramBean {
+public class PieChartBean {
 
     private String content;
     private double frequency;
+    private int color;
 
-    public HistogramBean(String content, float frequency) {
+    public PieChartBean(String content, double frequency, int color) {
         this.content = content;
         this.frequency = frequency;
+        this.color = color;
     }
+
 
     public String getContent() {
         return content;
@@ -27,5 +30,13 @@ public class HistogramBean {
 
     public void setFrequency(double frequency) {
         this.frequency = frequency;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 }
