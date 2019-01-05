@@ -12,7 +12,7 @@
     <attr name="axisLineColor" format="color" />
     <attr name="axisLineWidth" format="integer" />
 
-
+    <!--直方图-->
     <declare-styleable name="HistogramView">
         <!--直方图-->
         <attr name="histogramColor" format="color" />
@@ -32,7 +32,7 @@
 
     </declare-styleable>
 
-
+    <!--折线图-->
     <declare-styleable name="LineChartView">
         <!--折线图-->
         <attr name="lineChartColor" format="color" />
@@ -55,7 +55,7 @@
         <attr name="axisLineWidth" />
     </declare-styleable>
 
-
+    <!--饼状图-->
     <declare-styleable name="PieChartView">
         <!--指示线-->
         <attr name="indicatorLineColor" format="integer" />
@@ -64,6 +64,12 @@
         <!--说明-->
         <attr name="indicatorInfoColor" format="integer" />
         <attr name="indicatorInfoSize" format="float" />
+    </declare-styleable>
+
+
+    <declare-styleable name="RingChartView">
+        <attr name="ringWidth" format="dimension" />
+        <attr name="ringColor" format="color" />
 
     </declare-styleable>
 </resources>

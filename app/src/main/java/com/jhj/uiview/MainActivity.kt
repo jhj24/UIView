@@ -5,9 +5,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
-import com.jhj.uiview.fragment.HistogramFragment
-import com.jhj.uiview.fragment.LineChartFragment
-import com.jhj.uiview.fragment.PieChartFragment
+import com.jhj.uiview.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,11 +13,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val list = arrayListOf("折线图", "柱状图", "饼状图")
+        val list = arrayListOf("折线图", "柱状图", "饼状图", "水平偏移", "标签")
         val fragmentList = arrayListOf<Fragment>()
         fragmentList.add(LineChartFragment())
         fragmentList.add(HistogramFragment())
         fragmentList.add(PieChartFragment())
+        fragmentList.add(HorizontalOffsetFragment())
+        fragmentList.add(FlowLayoutFragment())
 
         viewPager.adapter = PageAdapter(fragmentList, list, supportFragmentManager)
 
