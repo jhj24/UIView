@@ -75,13 +75,13 @@
 
 
     <declare-styleable name="CircleImageView">
-        <attr name="isNeedBorder" format="boolean" />
-        <attr name="borderColor" format="color" />
-        <attr name="borderSize" format="integer" />
-        <attr name="type" format="enum">
+        <attr name="isNeedImageBorder" format="boolean" />
+        <attr name="imageBorderColor" format="color" />
+        <attr name="imageBorderWidth" format="integer" />
+        <attr name="imageStyle" format="enum">
             <enum name="circle" value="0" />
             <enum name="roundRect" value="1" />
         </attr>
-        <attr name="roundRectRadio" format="dimension" />
+        <attr name="imageRoundRectRadio" format="dimension" />
     </declare-styleable>
 </resources>

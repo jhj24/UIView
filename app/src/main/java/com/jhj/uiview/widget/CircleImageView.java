@@ -1,6 +1,7 @@
 package com.jhj.uiview.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -12,11 +13,18 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
+import com.jhj.uiview.R;
+
 public class CircleImageView extends AppCompatImageView {
 
     private Paint mPaint;
     private float radio;
 
+    private boolean isNeedBorder;
+    private int borderColor;
+    private int borderWidth;
+    private int imageStyle;
+    private float imageRoundRectRadio;
 
     public CircleImageView(Context context) {
         this(context, null);
@@ -29,8 +37,14 @@ public class CircleImageView extends AppCompatImageView {
     public CircleImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-
+        float density = getResources().getDisplayMetrics();
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView);
+        isNeedBorder = typedArray.getBoolean(R.styleable.CircleImageView_isNeedImageBorder, false);
+        borderColor = typedArray.getColor(R.styleable.CircleImageView_imageBorderColor, 0xff68b831);
+        borderWidth = typedArray.getInt(R.styleable.CircleImageView_imageBorderWidth, 3);
+        imageStyle = typedArray.getInt(R.styleable.CircleImageView_imageStyle, 0);
+        imageRoundRectRadio = typedArray.getDimension(R.styleable.CircleImageView_imageRoundRectRadio, 3 * density)
+        typedArray.recycle();
     }
 
     @Override
@@ -51,8 +65,18 @@ public class CircleImageView extends AppCompatImageView {
         radio = Math.min(height, width) / 2;
         float x = getPaddingLeft() + radio;
         float y = getPaddingTop() + radio;
+        mPaint.reset();
+        mPaint.setAntiAlias(true);
         mPaint.setShader(getShader());
         canvas.drawCircle(x, y, radio, mPaint);
+        if (isNeedBorder) {
+            mPaint.reset();
+            mPaint.setAntiAlias(true);
+            mPaint.setColor(borderColor);
+            mPaint.setStrokeWidth(borderWidth);
+            mPaint.setStyle(Paint.Style.STROKE);
+            canvas.drawCircle(x, y, radio, mPaint);
+        }
     }
 
     private BitmapShader getShader() {
@@ -79,6 +103,5 @@ public class CircleImageView extends AppCompatImageView {
         matrix.postTranslate(getPaddingLeft(), getPaddingTop());
         shader.setLocalMatrix(matrix);
         return shader;
-
     }
 }
