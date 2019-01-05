@@ -13,13 +13,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val list = arrayListOf("折线图", "柱状图", "饼状图", "水平偏移", "标签")
+        val list = arrayListOf("折线图", "柱状图", "饼状图", "水平偏移", "标签", "圆形图片")
         val fragmentList = arrayListOf<Fragment>()
         fragmentList.add(LineChartFragment())
         fragmentList.add(HistogramFragment())
         fragmentList.add(PieChartFragment())
         fragmentList.add(HorizontalOffsetFragment())
         fragmentList.add(FlowLayoutFragment())
+        fragmentList.add(CircleImageViewFragment())
 
         viewPager.adapter = PageAdapter(fragmentList, list, supportFragmentManager)
 
