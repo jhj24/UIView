@@ -15,6 +15,9 @@ import android.util.AttributeSet;
 
 import com.jhj.uiview.R;
 
+/**
+ * 圆形图片
+ */
 public class CircleImageView extends AppCompatImageView {
 
     private Paint mPaint;
@@ -23,8 +26,7 @@ public class CircleImageView extends AppCompatImageView {
     private boolean isNeedBorder;
     private int borderColor;
     private int borderWidth;
-    private int imageStyle;
-    private float imageRoundRectRadio;
+
 
     public CircleImageView(Context context) {
         this(context, null);
@@ -37,13 +39,10 @@ public class CircleImageView extends AppCompatImageView {
     public CircleImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mPaint = new Paint();
-        float density = getResources().getDisplayMetrics();
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView);
         isNeedBorder = typedArray.getBoolean(R.styleable.CircleImageView_isNeedImageBorder, false);
         borderColor = typedArray.getColor(R.styleable.CircleImageView_imageBorderColor, 0xff68b831);
         borderWidth = typedArray.getInt(R.styleable.CircleImageView_imageBorderWidth, 3);
-        imageStyle = typedArray.getInt(R.styleable.CircleImageView_imageStyle, 0);
-        imageRoundRectRadio = typedArray.getDimension(R.styleable.CircleImageView_imageRoundRectRadio, 3 * density)
         typedArray.recycle();
     }
 
@@ -69,6 +68,7 @@ public class CircleImageView extends AppCompatImageView {
         mPaint.setAntiAlias(true);
         mPaint.setShader(getShader());
         canvas.drawCircle(x, y, radio, mPaint);
+
         if (isNeedBorder) {
             mPaint.reset();
             mPaint.setAntiAlias(true);

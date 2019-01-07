@@ -11,6 +11,13 @@
     <!--坐标轴-->
     <attr name="axisLineColor" format="color" />
     <attr name="axisLineWidth" format="integer" />
+    <!--折线-->
+    <attr name="indicatorLineColor" format="integer" />
+    <attr name="indicatorLineLength" format="integer" />
+    <attr name="indicatorLineWidth" format="integer" />
+    <!--说明-->
+    <attr name="indicatorInfoColor" format="integer" />
+    <attr name="indicatorInfoSize" format="float" />
 
     <!--直方图-->
     <declare-styleable name="HistogramView">
@@ -34,14 +41,14 @@
 
     <!--折线图-->
     <declare-styleable name="LineChartView">
-        <!--折线图-->
-        <attr name="lineChartColor" format="color" />
-        <attr name="lineChartWidth" format="dimension" />
-        <attr name="lineChartDistance" format="dimension" />
-        <!--点-->
+        <!--折点-->
         <attr name="isPointRound" format="boolean" />
         <attr name="pointColor" format="color" />
         <attr name="pointSize" format="float" />
+        <!--折线-->
+        <attr name="lineChartColor" format="color" />
+        <attr name="lineChartWidth" format="dimension" />
+        <attr name="lineChartDistance" format="integer" />
         <!--频数-->
         <attr name="frequencyColor" />
         <attr name="frequencyMarginBottom" />
@@ -57,31 +64,32 @@
 
     <!--饼状图-->
     <declare-styleable name="PieChartView">
-        <!--指示线-->
-        <attr name="indicatorLineColor" format="integer" />
-        <attr name="indicatorLineLength" format="integer" />
-        <attr name="indicatorLineWidth" format="integer" />
+        <!--折线-->
+        <attr name="indicatorLineColor" />
+        <attr name="indicatorLineLength" />
+        <attr name="indicatorLineWidth" />
         <!--说明-->
-        <attr name="indicatorInfoColor" format="integer" />
-        <attr name="indicatorInfoSize" format="float" />
+        <attr name="indicatorInfoColor" />
+        <attr name="indicatorInfoSize" />
     </declare-styleable>
 
-
+    <!--环状图-->
     <declare-styleable name="RingChartView">
+        <!--圆环宽度-->
         <attr name="ringWidth" format="dimension" />
-        <attr name="ringColor" format="color" />
-
+        <!--折线-->
+        <attr name="indicatorLineColor" />
+        <attr name="indicatorLineLength" />
+        <attr name="indicatorLineWidth" />
+        <!--说明-->
+        <attr name="indicatorInfoColor" />
+        <attr name="indicatorInfoSize" />
     </declare-styleable>
 
-
+    <!--圆形图片-->
     <declare-styleable name="CircleImageView">
         <attr name="isNeedImageBorder" format="boolean" />
         <attr name="imageBorderColor" format="color" />
         <attr name="imageBorderWidth" format="integer" />
-        <attr name="imageStyle" format="enum">
-            <enum name="circle" value="0" />
-            <enum name="roundRect" value="1" />
-        </attr>
-        <attr name="imageRoundRectRadio" format="dimension" />
     </declare-styleable>
 </resources>

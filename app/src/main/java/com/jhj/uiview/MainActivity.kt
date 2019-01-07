@@ -10,22 +10,24 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+
+    private val map = hashMapOf(
+            "折线图" to LineChartFragment(),
+            "柱状图" to HistogramFragment(),
+            "饼状图" to PieChartFragment(),
+            "环状图" to RingChartFragment(),
+            "水平偏移" to HorizontalOffsetFragment(),
+            "标签" to FlowLayoutFragment(),
+            "圆形图片" to CircleImageViewFragment()
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val list = arrayListOf("折线图", "柱状图", "饼状图", "水平偏移", "标签", "圆形图片")
-        val fragmentList = arrayListOf<Fragment>()
-        fragmentList.add(LineChartFragment())
-        fragmentList.add(HistogramFragment())
-        fragmentList.add(PieChartFragment())
-        fragmentList.add(HorizontalOffsetFragment())
-        fragmentList.add(FlowLayoutFragment())
-        fragmentList.add(CircleImageViewFragment())
-
+        val list = map.keys.toList()
+        val fragmentList = map.values.toList()
         viewPager.adapter = PageAdapter(fragmentList, list, supportFragmentManager)
-
         tabLayout.setupWithViewPager(viewPager)
-
     }
 
 

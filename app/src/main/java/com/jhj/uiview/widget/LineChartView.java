@@ -23,7 +23,7 @@ public class LineChartView extends View {
 
     //直方图
     private int mLineChartColor;
-    private float mLineChartWidth;
+    private int mLineChartWidth;
     private float mLineChartDistance;
     //点
     private boolean isPointRound;
