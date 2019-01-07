@@ -75,7 +75,7 @@ public class CircleImageView extends AppCompatImageView {
             mPaint.setColor(borderColor);
             mPaint.setStrokeWidth(borderWidth);
             mPaint.setStyle(Paint.Style.STROKE);
-            canvas.drawCircle(x, y, radio, mPaint);
+            canvas.drawCircle(x, y, radio - borderWidth / 2, mPaint);
         }
     }
 

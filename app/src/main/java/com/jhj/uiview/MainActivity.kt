@@ -18,7 +18,8 @@ class MainActivity : AppCompatActivity() {
             "环状图" to RingChartFragment(),
             "水平偏移" to HorizontalOffsetFragment(),
             "标签" to FlowLayoutFragment(),
-            "圆形图片" to CircleImageViewFragment()
+            "圆形图片" to CircleImageViewFragment(),
+            "图片覆盖" to CoverImageFragment()
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

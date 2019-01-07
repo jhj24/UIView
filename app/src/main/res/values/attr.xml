@@ -92,4 +92,8 @@
         <attr name="imageBorderColor" format="color" />
         <attr name="imageBorderWidth" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="CoverImageLayout">
+        <attr name="coverSize" format="dimension" />
+    </declare-styleable>
 </resources>

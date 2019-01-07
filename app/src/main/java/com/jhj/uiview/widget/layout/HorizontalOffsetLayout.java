@@ -31,10 +31,9 @@ public class HorizontalOffsetLayout extends ViewGroup {
 
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
-          /*  LayoutParams lp = child.getLayoutParams();
-            int childWidthMeasureSpec = getChildMeasureSpec(widthMeasureSpec, 0, lp.width);
-            int childHeightMeasureSpec = getChildMeasureSpec(heightMeasureSpec, 0, lp.height);
-            child.measure(childWidthMeasureSpec, childHeightMeasureSpec);*/
+            if (child.getVisibility() == View.GONE) {
+                continue;
+            }
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
         }
 
@@ -82,12 +81,14 @@ public class HorizontalOffsetLayout extends ViewGroup {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         for (int i = 0; i < getChildCount(); i++) {
             View view = getChildAt(i);
+            if (view.getVisibility() == View.GONE) {
+                continue;
+            }
             int left = getPaddingLeft() + offset * i;
             int top = getPaddingTop() + view.getMeasuredHeight() * i;
             int right = getPaddingLeft() + view.getMeasuredWidth() + offset * i;
             int bottom = getPaddingTop() + view.getMeasuredHeight() * (i + 1);
             view.layout(left, top, right, bottom);
         }
-
     }
 }
