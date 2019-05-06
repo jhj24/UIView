@@ -96,4 +96,36 @@
     <declare-styleable name="CoverImageLayout">
         <attr name="coverSize" format="dimension" />
     </declare-styleable>
+
+    <!--条状图-->
+    <declare-styleable name="BarChartView">
+        <attr name="AxisLineColor"  />
+        <attr name="AxisLineWidth"  />
+        <attr name="excellentColor" format="color" />
+        <attr name="qualifiedColor" format="color" />
+        <attr name="yAxisPartNum" format="integer" />
+        <attr name="yAxisPartColor" format="color" />
+        <attr name="yAxisPartWidth" format="float" />
+        <attr name="textColor" />
+        <attr name="textSize" format="float" />
+        <attr name="textWidth" format="float" />
+        <attr name="xRectDistance" format="float" />
+        <attr name="roundRectHeight" format="float" />
+        <attr name="roundRectWidth" format="float" />
+        <attr name="roundRectRadio" format="float" />
+        <attr name="titleTextColor" format="color" />
+        <attr name="titleTextSize" format="float" />
+        <attr name="titleTextWidth" format="float" />
+    </declare-styleable>
+
+
+    <declare-styleable name="WaveView">
+        <attr name="wavePercentTextColor" format="color" />
+        <attr name="wavePercentTextSize" format="float" />
+        <attr name="wavePercentTextWidth" format="float" />
+        <attr name="waveSinColor" format="color" />
+        <attr name="waveTitleTextSize" format="float" />
+        <attr name="waveTitleTextWidth" format="float" />
+
+    </declare-styleable>
 </resources>

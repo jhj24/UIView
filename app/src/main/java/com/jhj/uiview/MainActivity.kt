@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
 
-    private val map = hashMapOf(
+    private val map = mapOf(
             "折线图" to LineChartFragment(),
             "柱状图" to HistogramFragment(),
             "饼状图" to PieChartFragment(),
@@ -19,7 +19,9 @@ class MainActivity : AppCompatActivity() {
             "水平偏移" to HorizontalOffsetFragment(),
             "标签" to FlowLayoutFragment(),
             "圆形图片" to CircleImageViewFragment(),
-            "图片覆盖" to CoverImageFragment()
+            "图片覆盖" to CoverImageFragment(),
+            "柱状图2" to BarChartViewFragment(),
+            "流量球" to WaveViewFragment()
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
