@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private val map = mapOf(
             "折线图" to LineChartFragment(),
             "柱状图" to HistogramFragment(),
+            "柱状图3" to HistogramFragment2(),
             "饼状图" to PieChartFragment(),
             "环状图" to RingChartFragment(),
             "水平偏移" to HorizontalOffsetFragment(),

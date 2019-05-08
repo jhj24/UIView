@@ -5,11 +5,10 @@
     android:layout_height="match_parent">
 
 
-    <com.jhj.uiview.widget.HistogramView
+    <com.jhj.uiview.widget.HistogramView2
         android:id="@+id/histogramView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="#506e79"
+        android:layout_height="280dp"
         android:padding="10dp"
         app:axisLineWidth="3"
         app:layout_constraintHeight_percent="0.6" />
